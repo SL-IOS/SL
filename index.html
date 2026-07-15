@@ -4,171 +4,531 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>StoryLine — AI Language Coach</title>
-  <meta name="description" content="StoryLine is a personalized AI language coach that teaches through immersive story worlds. Privacy policy, support, and terms.">
+  <meta name="description" content="StoryLine is a personalized AI language coach that teaches through immersive story worlds.">
   <style>
     :root {
-      --bg: #0b1020;
-      --surface: #121a2e;
-      --surface-2: #1a2440;
-      --text: #eef2ff;
-      --muted: #9aa8c7;
-      --accent: #6ea8ff;
-      --accent-2: #8b5cf6;
-      --border: rgba(255,255,255,.08);
-      --max: 820px;
+      --navy: #0d1b3d;
+      --blue: #3b82eb;
+      --blue-soft: #a8d4fc;
+      --purple: #8a94ff;
+      --teal: #76e1c4;
+      --green: #2db872;
+      --shell: #f5f7fb;
+      --shell-deep: #f2f4f9;
+      --card: #ffffff;
+      --text: #0d1b3d;
+      --text-secondary: rgba(13, 27, 61, 0.88);
+      --text-muted: rgba(13, 27, 61, 0.64);
+      --border: rgba(13, 27, 61, 0.10);
+      --border-strong: rgba(13, 27, 61, 0.16);
+      --shadow: 0 10px 24px rgba(13, 27, 61, 0.07);
+      --shadow-lg: 0 14px 32px rgba(13, 27, 61, 0.12);
+      --max: 760px;
+      --radius: 16px;
     }
+
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 10% -10%, rgba(110,168,255,.18), transparent 60%),
-                  radial-gradient(900px 500px at 90% 0%, rgba(139,92,246,.14), transparent 55%),
-                  var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Rounded", "SF Pro Text", system-ui, sans-serif;
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
+      background:
+        linear-gradient(165deg, var(--shell-deep) 0%, var(--shell) 38%, #eef2fa 62%, var(--shell) 100%);
+      min-height: 100vh;
     }
-    a { color: var(--accent); }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
     header {
       position: sticky;
       top: 0;
-      z-index: 10;
-      backdrop-filter: blur(12px);
-      background: rgba(11,16,32,.82);
+      z-index: 20;
+      background: rgba(245, 247, 251, 0.88);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      min-height: 64px;
+      gap: 12px;
+      min-height: 62px;
       flex-wrap: wrap;
+      padding: 8px 0;
     }
-    .brand { font-weight: 700; letter-spacing: .2px; }
-    .links { display: flex; flex-wrap: wrap; gap: 14px; font-size: 14px; }
-    .links a { color: var(--muted); text-decoration: none; }
-    .links a:hover { color: var(--text); }
-    main { padding: 28px 0 64px; }
-    .hero { padding: 36px 0 18px; }
-    .badge {
-      display: inline-block;
-      font-size: 12px;
-      letter-spacing: .4px;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid rgba(110,168,255,.35);
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      box-shadow: 0 6px 18px rgba(59, 130, 235, 0.28);
+    }
+
+    .wordmark {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .wordmark .line {
+      background: linear-gradient(90deg, var(--blue-soft), var(--blue), rgba(138, 148, 255, 0.88));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .links a {
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 7px 11px;
       border-radius: 999px;
-      padding: 6px 10px;
-      margin-bottom: 14px;
     }
-    h1 {
-      font-size: clamp(2rem, 5vw, 2.8rem);
-      line-height: 1.15;
-      margin: 0 0 12px;
+
+    .links a:hover {
+      color: var(--navy);
+      background: rgba(59, 130, 235, 0.08);
+      text-decoration: none;
     }
-    .lead { color: var(--muted); font-size: 1.05rem; max-width: 62ch; }
+
+    main { padding: 28px 0 56px; }
+
+    .hero {
+      text-align: center;
+      padding: 18px 0 8px;
+    }
+
+    .hero-mark {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 14px;
+      border-radius: 22px;
+      box-shadow: 0 12px 28px rgba(59, 130, 235, 0.32);
+    }
+
+    .hero h1.wordmark {
+      font-size: clamp(2.1rem, 6vw, 2.8rem);
+      margin: 0 0 10px;
+      text-shadow: 0 2px 6px rgba(59, 130, 235, 0.18);
+    }
+
+    .tagline {
+      font-size: clamp(1.2rem, 3.5vw, 1.55rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin: 0 0 10px;
+      color: var(--text);
+    }
+
+    .subtitle {
+      margin: 0 auto;
+      max-width: 34rem;
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin: 28px 0 10px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin: 26px 0 18px;
     }
+
     .card {
-      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent), var(--surface);
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: var(--radius);
       padding: 18px;
+      box-shadow: var(--shadow);
     }
-    .card h3 { margin: 0 0 8px; font-size: 1rem; }
-    .card p { margin: 0; color: var(--muted); font-size: .95rem; }
-    section {
-      margin-top: 42px;
-      padding-top: 8px;
-      border-top: 1px solid var(--border);
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 0.95rem;
+      color: var(--navy);
     }
-    h2 { font-size: 1.55rem; margin: 0 0 10px; }
-    h3 { font-size: 1.05rem; margin: 22px 0 8px; }
-    p, li { color: #d7def2; }
-    ul { padding-left: 1.2rem; }
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 22px;
-      margin-top: 14px;
+
+    .card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
     }
-    .lang-toggle {
-      display: inline-flex;
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: rgba(59, 130, 235, 0.10);
+      border: 1px solid rgba(13, 27, 61, 0.12);
+      border-radius: 999px;
+      padding: 7px 12px;
+    }
+
+    /* Daily Trio — app hook */
+    .trio-showcase {
+      margin: 28px auto 0;
+      max-width: 420px;
+      text-align: left;
+      background: var(--card);
+      border: 1px solid var(--border-strong);
+      border-radius: 26px;
+      padding: 20px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .trio-showcase-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .trio-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      background: linear-gradient(135deg, rgba(13, 27, 61, 0.12), rgba(59, 130, 235, 0.10));
+      flex-shrink: 0;
+    }
+
+    .trio-showcase-head h2 {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .trio-showcase-head p {
+      margin: 4px 0 0;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .trio-progress {
+      display: flex;
+      align-items: center;
       gap: 8px;
       margin-bottom: 14px;
     }
-    .lang-toggle button {
-      background: var(--surface-2);
-      color: var(--text);
-      border: 1px solid var(--border);
+
+    .trio-progress .bar {
+      flex: 1;
+      height: 5px;
       border-radius: 999px;
-      padding: 8px 14px;
-      cursor: pointer;
-      font: inherit;
+      background: rgba(13, 27, 61, 0.12);
+      overflow: hidden;
     }
-    .lang-toggle button.active {
-      background: linear-gradient(90deg, rgba(110,168,255,.25), rgba(139,92,246,.25));
-      border-color: rgba(110,168,255,.45);
+
+    .trio-progress .bar span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: var(--green);
     }
-    .hidden { display: none; }
-    .meta {
-      color: var(--muted);
-      font-size: .92rem;
-      margin-bottom: 12px;
+
+    .trio-progress .count {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
     }
+
+    .trio-streak {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--green);
+      background: rgba(45, 184, 114, 0.14);
+      border-radius: 999px;
+      padding: 4px 8px;
+    }
+
+    .trio-rows { display: grid; gap: 8px; }
+
+    .trio-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--shell);
+    }
+
+    .trio-row.done { opacity: 0.72; }
+
+    .trio-row.active {
+      border-color: rgba(13, 27, 61, 0.18);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .trio-lane {
+      width: 56px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .trio-lane .glyph {
+      font-size: 1.25rem;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .trio-lane .label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .trio-lane.story .glyph, .trio-lane.story .label { color: var(--navy); }
+    .trio-lane.vocab .glyph, .trio-lane.vocab .label { color: #228f5b; }
+    .trio-lane.grammar .glyph, .trio-lane.grammar .label { color: var(--blue); }
+
+    .trio-task {
+      flex: 1;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      line-height: 1.35;
+    }
+
+    .trio-row.done .trio-task { color: var(--text-muted); text-decoration: line-through; }
+
+    .trio-chevron {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .trio-check {
+      color: var(--green);
+      font-size: 1.1rem;
+      font-weight: 900;
+    }
+
+    .trio-cta {
+      display: block;
+      margin-top: 14px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, var(--navy), var(--blue));
+      box-shadow: 0 8px 20px rgba(59, 130, 235, 0.28);
+    }
+
+    .trio-cta:hover { text-decoration: none; filter: brightness(1.03); }
+
+    .trio-hook {
+      margin: 14px auto 0;
+      max-width: 28rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .supporting-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin: 28px 0 18px;
+    }
+
     .cta-row {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 10px;
-      margin-top: 18px;
+      margin-top: 22px;
     }
+
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 0.95rem;
       text-decoration: none;
-      border-radius: 12px;
-      padding: 10px 14px;
-      font-weight: 600;
-      font-size: .95rem;
+      border: none;
     }
+
     .btn-primary {
-      color: #08101f;
-      background: linear-gradient(90deg, #8ec0ff, #b69cff);
+      color: #fff;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow: 0 8px 20px rgba(59, 130, 235, 0.28);
     }
+
+    .btn-primary:hover { text-decoration: none; filter: brightness(1.03); }
+
     .btn-secondary {
-      color: var(--text);
-      border: 1px solid var(--border);
-      background: var(--surface);
+      color: var(--navy);
+      background: var(--card);
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow);
     }
+
+    .btn-secondary:hover { text-decoration: none; background: #fafcff; }
+
+    section {
+      margin-top: 38px;
+      scroll-margin-top: 80px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    .meta {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h3 {
+      margin: 20px 0 8px;
+      font-size: 0.98rem;
+      color: var(--navy);
+    }
+
+    .panel h3:first-child { margin-top: 0; }
+
+    .panel p, .panel li {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      gap: 6px;
+      padding: 4px;
+      background: var(--shell-deep);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .lang-toggle button {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .lang-toggle button.active {
+      color: var(--navy);
+      background: rgba(59, 130, 235, 0.10);
+      box-shadow: inset 0 0 0 1px rgba(13, 27, 61, 0.10);
+    }
+
+    .hidden { display: none; }
+
     footer {
       border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: .9rem;
-      padding: 28px 0 40px;
+      padding: 24px 0 36px;
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      font-weight: 600;
     }
+
     code {
-      background: rgba(255,255,255,.06);
+      background: rgba(59, 130, 235, 0.08);
+      color: var(--navy);
       padding: 2px 6px;
       border-radius: 6px;
-      font-size: .9em;
+      font-size: 0.88em;
     }
+
     @media (max-width: 640px) {
       .links { width: 100%; }
+      .hero-mark { width: 76px; height: 76px; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap nav">
-      <div class="brand">StoryLine</div>
+      <a class="nav-brand" href="#home">
+        <img src="StoryLineMark.png" alt="" width="34" height="34">
+        <span class="wordmark">Story<span class="line">Line</span></span>
+      </a>
       <nav class="links" aria-label="Site">
-        <a href="#home">Home</a>
         <a href="#privacy">Privacy</a>
         <a href="#terms">Terms</a>
         <a href="#support">Support</a>
@@ -180,37 +540,88 @@
 
   <main class="wrap">
     <section id="home" class="hero">
-      <div class="badge">AI language coach</div>
-      <h1>Learn languages through your own story world.</h1>
-      <p class="lead">
-        StoryLine is a personalized AI language coach for iOS. Each language pair lives in a persistent story universe with missions, flipcards, and structured Foundation practice — taught in your mother tongue.
+      <img class="hero-mark" src="StoryLineMark.png" alt="StoryLine app icon">
+      <h1 class="wordmark">Story<span class="line">Line</span></h1>
+      <p class="tagline">Your language. Your story.</p>
+      <p class="subtitle">
+        Every day, three clear tasks keep you moving — one story chapter, one vocab topic, one grammar session. That’s the Daily Trio.
       </p>
-      <div class="cards">
+
+      <div class="trio-showcase" aria-label="Daily Trio preview">
+        <div class="trio-showcase-head">
+          <div class="trio-icon" aria-hidden="true">✓</div>
+          <div>
+            <h2>Daily Trio</h2>
+            <p>Your 3 tasks for today</p>
+          </div>
+        </div>
+
+        <div class="trio-progress">
+          <div class="bar" style="flex:1.2"><span style="width:33%"></span></div>
+          <div class="bar"><span style="width:0%"></span></div>
+          <div class="bar"><span style="width:0%"></span></div>
+          <span class="count">1/3</span>
+          <span class="trio-streak">7-day streak</span>
+        </div>
+
+        <div class="trio-rows">
+          <div class="trio-row done">
+            <div class="trio-lane story">
+              <div class="glyph">📖</div>
+              <div class="label">Staffel</div>
+            </div>
+            <div class="trio-task">Play today’s story episode</div>
+            <span class="trio-check" aria-hidden="true">✓</span>
+          </div>
+          <div class="trio-row active">
+            <div class="trio-lane vocab">
+              <div class="glyph">🃏</div>
+              <div class="label">Karten</div>
+            </div>
+            <div class="trio-task">Review 1 vocab topic from your story</div>
+            <span class="trio-chevron" aria-hidden="true">›</span>
+          </div>
+          <div class="trio-row">
+            <div class="trio-lane grammar">
+              <div class="glyph">📘</div>
+              <div class="label">Grammatik</div>
+            </div>
+            <div class="trio-task">Complete 1 grammar topic in Foundation</div>
+            <span class="trio-chevron" aria-hidden="true">›</span>
+          </div>
+        </div>
+
+        <span class="trio-cta">Review 1 vocab topic</span>
+      </div>
+
+      <p class="trio-hook">1 of each per day — the fastest path to your next level.</p>
+
+      <div class="supporting-cards">
         <div class="card">
-          <h3>Story missions</h3>
-          <p>Daily episodes with dialogue, listening, recall, and writing in an ongoing narrative.</p>
+          <h3>Personal story world</h3>
+          <p>AI-written episodes in a universe built for your language pair and interests.</p>
         </div>
         <div class="card">
-          <h3>Foundation coach</h3>
-          <p>Structured skill practice for vocabulary, grammar, listening, reading, and production.</p>
-        </div>
-        <div class="card">
-          <h3>Your progress</h3>
-          <p>CEFR-aligned levels, spaced-repetition flipcards tied to scenes you lived, and sync across devices.</p>
+          <h3>Active learning</h3>
+          <p>Listen, recall, write, and produce — not tap-only drills.</p>
         </div>
       </div>
+
       <div class="cta-row">
-        <a class="btn btn-primary" href="https://apps.apple.com/app/id0000000000">Download on the App Store</a>
-        <a class="btn btn-secondary" href="mailto:fw@kirmes.app">Contact support</a>
+        <a class="btn btn-primary" href="mailto:fbachhausen@icloud.com">Contact support</a>
+        <a class="btn btn-secondary" href="#privacy">Privacy Policy</a>
       </div>
-      <p class="meta" style="margin-top:14px;">
-        Bundle ID: <code>apple.storyline.ios</code> · Support: <a href="mailto:fw@kirmes.app">fw@kirmes.app</a>
+
+      <p class="meta" style="margin-top:16px; text-align:center;">
+        Bundle ID: <code>apple.storyline.ios</code>
       </p>
     </section>
 
     <section id="privacy">
-      <h2>Privacy Policy</h2>
-      <p class="meta">Last updated: July 15, 2026</p>
+      <div class="section-head">
+        <h2>Privacy Policy</h2>
+        <p class="meta">Last updated: July 15, 2026</p>
+      </div>
       <div class="lang-toggle" role="tablist" aria-label="Privacy language">
         <button type="button" class="active" data-lang-target="privacy-en">English</button>
         <button type="button" data-lang-target="privacy-de">Deutsch</button>
@@ -218,15 +629,15 @@
 
       <div id="privacy-en" class="panel">
         <h3>Data controller</h3>
-        <p>StoryLine. Privacy inquiries: <a href="mailto:fw@kirmes.app">fw@kirmes.app</a></p>
+        <p>StoryLine · Copenhagen, Denmark · <a href="mailto:fbachhausen@icloud.com">fbachhausen@icloud.com</a></p>
         <h3>1. What we collect</h3>
         <ul>
-          <li><strong>Account data:</strong> information from Sign in with Apple or Google Sign-In.</li>
-          <li><strong>Learning data:</strong> language pairs, CEFR level, progress, flipcards, coach history, and exercise results.</li>
-          <li><strong>Optional contact data:</strong> email and phone if you provide them in the app.</li>
+          <li><strong>Account data:</strong> Sign in with Apple or Google Sign-In.</li>
+          <li><strong>Learning data:</strong> language pairs, CEFR level, progress, flipcards, coach history, exercise results.</li>
+          <li><strong>Optional contact data:</strong> email and phone if provided in the app.</li>
           <li><strong>Generated content:</strong> AI-generated story chapters, exercises, and coach cards.</li>
-          <li><strong>Device and usage data:</strong> technical data needed to operate and improve the app.</li>
-          <li><strong>Advertising and tracking:</strong> with your consent, via Google AdMob and App Tracking Transparency on iOS.</li>
+          <li><strong>Device and usage data:</strong> technical data to operate and improve the app.</li>
+          <li><strong>Advertising:</strong> with consent, via Google AdMob and App Tracking Transparency on iOS.</li>
           <li><strong>Notifications:</strong> device token if you allow push notifications.</li>
         </ul>
         <h3>2. How we use data</h3>
@@ -238,123 +649,69 @@
           <li>Respond to support requests and legal obligations.</li>
         </ul>
         <h3>3. Legal basis (GDPR)</h3>
-        <ul>
-          <li>Performance of our contract with you.</li>
-          <li>Your consent (e.g. personalized ads, notifications).</li>
-          <li>Legitimate interests (security, fraud prevention, product improvement).</li>
-          <li>Legal obligations.</li>
-        </ul>
-        <h3>4. Storage and processors</h3>
-        <p>Data is stored via Google Firebase (Authentication, Firestore, Cloud Functions) and related providers. AI features may use Google Cloud / Vertex AI. Where possible, learner data is kept in the EU.</p>
+        <p>Contract performance, consent, legitimate interests, and legal obligations.</p>
+        <h3>4. Storage</h3>
+        <p>Google Firebase (Authentication, Firestore, Cloud Functions) and Google Cloud / Vertex AI for AI features. Where possible, data is kept in the EU.</p>
         <h3>5. Sharing</h3>
-        <p>We do not sell your personal data. We share data only with service providers under contracts, or when required by law.</p>
+        <p>We do not sell personal data. Sharing only with service providers under contract or when required by law.</p>
         <h3>6. Retention</h3>
-        <p>We retain data only as long as needed. You can delete your account in the app (see <a href="#account-deletion">Account deletion</a>).</p>
+        <p>Data is kept only as long as needed. You can delete your account in the app (see <a href="#account-deletion">Account deletion</a>).</p>
         <h3>7. Your rights</h3>
-        <p>Under GDPR you may request access, correction, deletion, restriction, portability, or withdraw consent. Contact <a href="mailto:fw@kirmes.app">fw@kirmes.app</a>.</p>
+        <p>Access, correction, deletion, restriction, portability, withdraw consent: <a href="mailto:fbachhausen@icloud.com">fbachhausen@icloud.com</a>.</p>
         <h3>8. Children</h3>
-        <p>StoryLine is intended for users who can lawfully consent to data processing in their jurisdiction.</p>
-        <h3>9. Changes</h3>
-        <p>We may update this policy. The “Last updated” date above will change when we do.</p>
+        <p>For users who can lawfully consent in their jurisdiction.</p>
       </div>
 
       <div id="privacy-de" class="panel hidden">
         <h3>Verantwortlicher</h3>
-        <p>StoryLine. Datenschutzanfragen: <a href="mailto:fw@kirmes.app">fw@kirmes.app</a></p>
+        <p>StoryLine · Kopenhagen, Dänemark · <a href="mailto:fbachhausen@icloud.com">fbachhausen@icloud.com</a></p>
         <h3>1. Welche Daten wir erheben</h3>
         <ul>
-          <li><strong>Kontodaten:</strong> Sign in with Apple oder Google Sign-In.</li>
-          <li><strong>Lerndaten:</strong> Sprachkombinationen, CEFR-Niveau, Fortschritt, Flipcards, Coach-Verlauf.</li>
-          <li><strong>Optionale Kontaktdaten:</strong> E-Mail und Telefonnummer in der App.</li>
-          <li><strong>Generierte Inhalte:</strong> KI-erzeugte Story-Kapitel, Übungen und Coach-Karten.</li>
-          <li><strong>Geräte- und Nutzungsdaten:</strong> technische Daten zum Betrieb und zur Verbesserung.</li>
-          <li><strong>Werbung und Tracking:</strong> mit Einwilligung über Google AdMob und App Tracking Transparency.</li>
-          <li><strong>Benachrichtigungen:</strong> Gerätetoken bei aktivierten Push-Mitteilungen.</li>
+          <li>Kontodaten (Apple/Google Sign-In), Lerndaten, optionale Kontaktdaten, KI-Inhalte, Gerätedaten, Werbe-IDs mit Einwilligung, Push-Token.</li>
         </ul>
-        <h3>2. Zweck der Verarbeitung</h3>
-        <ul>
-          <li>Bereitstellung und Personalisierung von Sprachcoaching und Story-Inhalten.</li>
-          <li>Synchronisation deines Fortschritts.</li>
-          <li>Betrieb von Authentifizierung, Cloud-Speicher und KI-Generierung.</li>
-          <li>Anzeigen von Werbung gemäß deinen Einwilligungseinstellungen.</li>
-          <li>Support und gesetzliche Pflichten.</li>
-        </ul>
-        <h3>3. Rechtsgrundlagen (DSGVO)</h3>
-        <ul>
-          <li>Vertragserfüllung, Einwilligung, berechtigte Interessen, gesetzliche Verpflichtungen.</li>
-        </ul>
+        <h3>2. Zweck</h3>
+        <p>Sprachcoaching, Fortschrittssync, Cloud-Betrieb, Werbung mit Einwilligung, Support.</p>
+        <h3>3. Rechtsgrundlagen</h3>
+        <p>Vertrag, Einwilligung, berechtigte Interessen, gesetzliche Pflichten (DSGVO).</p>
         <h3>4. Speicherung</h3>
-        <p>Google Firebase und ggf. Google Cloud / Vertex AI. Wo möglich Verarbeitung in der EU.</p>
+        <p>Google Firebase und ggf. Vertex AI. Wo möglich in der EU.</p>
         <h3>5. Weitergabe</h3>
-        <p>Kein Verkauf personenbezogener Daten. Weitergabe nur an Dienstleister oder wenn gesetzlich erforderlich.</p>
-        <h3>6. Speicherdauer</h3>
-        <p>Nur so lange wie nötig. Kontolöschung in der App möglich (siehe <a href="#account-deletion">Kontolöschung</a>).</p>
-        <h3>7. Deine Rechte</h3>
-        <p>Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit: <a href="mailto:fw@kirmes.app">fw@kirmes.app</a>.</p>
-        <h3>8. Kinder</h3>
-        <p>Nur für Nutzer, die wirksam einwilligen können.</p>
-        <h3>9. Änderungen</h3>
-        <p>Wir können diese Erklärung aktualisieren.</p>
+        <p>Kein Verkauf. Nur Dienstleister oder gesetzlich erforderlich.</p>
+        <h3>6. Löschung</h3>
+        <p>Kontolöschung in der App möglich (siehe <a href="#account-deletion">Kontolöschung</a>).</p>
+        <h3>7. Rechte</h3>
+        <p><a href="mailto:fbachhausen@icloud.com">fbachhausen@icloud.com</a></p>
       </div>
     </section>
 
     <section id="terms">
-      <h2>Terms of Service</h2>
-      <p class="meta">Last updated: July 15, 2026</p>
+      <div class="section-head">
+        <h2>Terms of Service</h2>
+        <p class="meta">Last updated: July 15, 2026</p>
+      </div>
       <div class="lang-toggle" role="tablist" aria-label="Terms language">
         <button type="button" class="active" data-lang-target="terms-en">English</button>
         <button type="button" data-lang-target="terms-de">Deutsch</button>
       </div>
 
       <div id="terms-en" class="panel">
-        <h3>1. Provider</h3>
-        <p>StoryLine — AI language coach. Contact: <a href="mailto:fw@kirmes.app">fw@kirmes.app</a>.</p>
-        <h3>2. Service</h3>
-        <p>Learning content, progress tracking, and AI-generated exercises for language pairs you choose.</p>
-        <h3>3. Account</h3>
-        <p>A user account is required. One account per person. Keep your credentials secure.</p>
-        <h3>4. Acceptable use</h3>
-        <p>Do not misuse the app, run automated access, or infringe third-party rights.</p>
-        <h3>5. AI content</h3>
-        <p>Content may be AI-generated. We strive for quality but do not guarantee every generation is error-free.</p>
-        <h3>6. Privacy</h3>
-        <p>Our <a href="#privacy">Privacy Policy</a> applies. GDPR-compliant processing.</p>
-        <h3>7. Changes and termination</h3>
-        <p>We may update terms or features. Accounts may be suspended for misuse. You may delete your account in Settings.</p>
-        <h3>8. Liability</h3>
-        <p>StoryLine does not replace formal language certification. Liability limited as permitted by law.</p>
-        <h3>9. Governing law</h3>
-        <p>German law applies. German version prevails if versions differ.</p>
+        <p>StoryLine provides AI-generated language learning. Contact: <a href="mailto:fbachhausen@icloud.com">fbachhausen@icloud.com</a>. One account per person. No misuse or automated access. AI content may contain errors. <a href="#privacy">Privacy Policy</a> applies. Danish/EU consumer law may apply where relevant; governing law otherwise as stated in the German version below.</p>
       </div>
 
       <div id="terms-de" class="panel hidden">
-        <h3>1. Anbieter</h3>
-        <p>StoryLine — KI-Sprachtrainer. Kontakt: <a href="mailto:fw@kirmes.app">fw@kirmes.app</a>.</p>
-        <h3>2. Leistungsbeschreibung</h3>
-        <p>Lerninhalte, Fortschrittsverfolgung und KI-generierte Übungen.</p>
-        <h3>3. Konto</h3>
-        <p>Benutzerkonto erforderlich. Ein Konto pro Person.</p>
-        <h3>4. Nutzung</h3>
-        <p>Kein Missbrauch, keine automatisierten Zugriffe, keine Rechtsverletzungen.</p>
-        <h3>5. KI-Inhalte</h3>
-        <p>Inhalte können KI-generiert sein. Keine Garantie für Fehlerfreiheit jeder Generierung.</p>
-        <h3>6. Datenschutz</h3>
-        <p><a href="#privacy">Datenschutzbestimmungen</a> gelten. DSGVO-konform.</p>
-        <h3>7. Änderungen und Beendigung</h3>
-        <p>Bedingungen und Funktionen können sich ändern. Konto in Einstellungen löschbar.</p>
-        <h3>8. Haftung</h3>
-        <p>Kein Ersatz für Sprachzertifikate. Haftung gesetzlich beschränkt.</p>
-        <h3>9. Anwendbares Recht</h3>
-        <p>Deutsches Recht. Deutsche Fassung ist maßgeblich.</p>
+        <p>StoryLine ist ein KI-Sprachtrainer. Kontakt: <a href="mailto:fbachhausen@icloud.com">fbachhausen@icloud.com</a>. Ein Konto pro Person. Kein Missbrauch. KI-Inhalte können Fehler enthalten. <a href="#privacy">Datenschutz</a> gilt. Deutsches Recht; deutsche Fassung ist maßgeblich.</p>
       </div>
     </section>
 
     <section id="support">
-      <h2>Support</h2>
+      <div class="section-head">
+        <h2>Support</h2>
+      </div>
       <div class="panel">
         <p>Need help with StoryLine?</p>
         <ul>
-          <li><strong>Email:</strong> <a href="mailto:fw@kirmes.app">fw@kirmes.app</a></li>
+          <li><strong>Email:</strong> <a href="mailto:fbachhausen@icloud.com">fbachhausen@icloud.com</a></li>
+          <li><strong>Location:</strong> Copenhagen, Denmark</li>
           <li><strong>In the app:</strong> Profile → Settings → Contact</li>
         </ul>
         <h3>Common topics</h3>
@@ -368,41 +725,42 @@
     </section>
 
     <section id="account-deletion">
-      <h2>Account deletion</h2>
+      <div class="section-head">
+        <h2>Account deletion</h2>
+      </div>
       <div class="lang-toggle" role="tablist" aria-label="Deletion language">
         <button type="button" class="active" data-lang-target="delete-en">English</button>
         <button type="button" data-lang-target="delete-de">Deutsch</button>
       </div>
 
       <div id="delete-en" class="panel">
-        <h3>How to delete your account</h3>
         <ol>
           <li>Open <strong>StoryLine</strong> and sign in.</li>
           <li>Go to <strong>Profile → Settings</strong>.</li>
           <li>Tap <strong>Delete account</strong> and confirm.</li>
         </ol>
-        <p>This permanently deletes your account and all associated cloud learning data. Local app data is also cleared. Deletion cannot be undone.</p>
-        <p>If deletion fails, email <a href="mailto:fw@kirmes.app">fw@kirmes.app</a>.</p>
+        <p>This permanently deletes your account and all cloud learning data. Cannot be undone. If it fails, email <a href="mailto:fbachhausen@icloud.com">fbachhausen@icloud.com</a>.</p>
       </div>
 
       <div id="delete-de" class="panel hidden">
-        <h3>So löschst du dein Konto</h3>
         <ol>
           <li><strong>StoryLine</strong> öffnen und anmelden.</li>
           <li><strong>Profil → Einstellungen</strong> öffnen.</li>
           <li><strong>Konto löschen</strong> tippen und bestätigen.</li>
         </ol>
-        <p>Konto und alle Cloud-Lerndaten werden dauerhaft gelöscht. Lokale Daten ebenfalls. Endgültig.</p>
-        <p>Bei Fehlern: <a href="mailto:fw@kirmes.app">fw@kirmes.app</a>.</p>
+        <p>Löschung ist endgültig. Bei Fehlern: <a href="mailto:fbachhausen@icloud.com">fbachhausen@icloud.com</a>.</p>
       </div>
     </section>
 
     <section id="impressum">
-      <h2>Impressum</h2>
+      <div class="section-head">
+        <h2>Impressum / Legal notice</h2>
+      </div>
       <div class="panel">
         <p><strong>StoryLine</strong></p>
-        <p>Contact: <a href="mailto:fw@kirmes.app">fw@kirmes.app</a></p>
-        <p class="meta">Update with your full legal name and postal address before publishing in Germany.</p>
+        <p>Copenhagen, Denmark</p>
+        <p>Email: <a href="mailto:fbachhausen@icloud.com">fbachhausen@icloud.com</a></p>
+        <p class="meta">Responsible for content: StoryLine, Copenhagen, Denmark.</p>
       </div>
     </section>
   </main>
@@ -413,18 +771,13 @@
 
   <script>
     document.querySelectorAll('.lang-toggle').forEach(function (group) {
-      var buttons = group.querySelectorAll('button[data-lang-target]');
-      buttons.forEach(function (btn) {
+      group.querySelectorAll('button[data-lang-target]').forEach(function (btn) {
         btn.addEventListener('click', function () {
           var targetId = btn.getAttribute('data-lang-target');
           var section = group.closest('section');
-          if (!section || !targetId) return;
-          section.querySelectorAll('.panel').forEach(function (panel) {
-            panel.classList.add('hidden');
-          });
-          var target = document.getElementById(targetId);
-          if (target) target.classList.remove('hidden');
-          buttons.forEach(function (b) { b.classList.remove('active'); });
+          section.querySelectorAll('.panel').forEach(function (p) { p.classList.add('hidden'); });
+          document.getElementById(targetId).classList.remove('hidden');
+          group.querySelectorAll('button').forEach(function (b) { b.classList.remove('active'); });
           btn.classList.add('active');
         });
       });
