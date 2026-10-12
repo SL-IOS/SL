@@ -122,6 +122,11 @@
 
     .hero {
       text-align: center;
+      min-height: 72vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       padding: 18px 0 8px;
     }
 
@@ -540,81 +545,9 @@
 
   <main class="wrap">
     <section id="home" class="hero">
-      <img class="hero-mark" src="StoryLineMark.png" alt="StoryLine app icon">
+      <img class="hero-mark" src="StoryLineIcon.png" alt="StoryLine app icon">
       <h1 class="wordmark">Story<span class="line">Line</span></h1>
       <p class="tagline">Your language. Your story.</p>
-      <p class="subtitle">
-        Every day, three clear tasks keep you moving — one story chapter, one vocab topic, one grammar session. That’s the Daily Trio.
-      </p>
-
-      <div class="trio-showcase" aria-label="Daily Trio preview">
-        <div class="trio-showcase-head">
-          <div class="trio-icon" aria-hidden="true">✓</div>
-          <div>
-            <h2>Daily Trio</h2>
-            <p>Your 3 tasks for today</p>
-          </div>
-        </div>
-
-        <div class="trio-progress">
-          <div class="bar" style="flex:1.2"><span style="width:33%"></span></div>
-          <div class="bar"><span style="width:0%"></span></div>
-          <div class="bar"><span style="width:0%"></span></div>
-          <span class="count">1/3</span>
-          <span class="trio-streak">7-day streak</span>
-        </div>
-
-        <div class="trio-rows">
-          <div class="trio-row done">
-            <div class="trio-lane story">
-              <div class="glyph">📖</div>
-              <div class="label">Staffel</div>
-            </div>
-            <div class="trio-task">Play today’s story episode</div>
-            <span class="trio-check" aria-hidden="true">✓</span>
-          </div>
-          <div class="trio-row active">
-            <div class="trio-lane vocab">
-              <div class="glyph">🃏</div>
-              <div class="label">Karten</div>
-            </div>
-            <div class="trio-task">Review 1 vocab topic from your story</div>
-            <span class="trio-chevron" aria-hidden="true">›</span>
-          </div>
-          <div class="trio-row">
-            <div class="trio-lane grammar">
-              <div class="glyph">📘</div>
-              <div class="label">Grammatik</div>
-            </div>
-            <div class="trio-task">Complete 1 grammar topic in Foundation</div>
-            <span class="trio-chevron" aria-hidden="true">›</span>
-          </div>
-        </div>
-
-        <span class="trio-cta">Review 1 vocab topic</span>
-      </div>
-
-      <p class="trio-hook">1 of each per day — the fastest path to your next level.</p>
-
-      <div class="supporting-cards">
-        <div class="card">
-          <h3>Personal story world</h3>
-          <p>AI-written episodes in a universe built for your language pair and interests.</p>
-        </div>
-        <div class="card">
-          <h3>Active learning</h3>
-          <p>Listen, recall, write, and produce — not tap-only drills.</p>
-        </div>
-      </div>
-
-      <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:fstoryline@icloud.com">Contact support</a>
-        <a class="btn btn-secondary" href="#privacy">Privacy Policy</a>
-      </div>
-
-      <p class="meta" style="margin-top:16px; text-align:center;">
-        Bundle ID: <code>apple.storyline.ios</code>
-      </p>
     </section>
 
     <section id="privacy">
