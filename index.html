@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>StoryLine — AI Language Coach</title>
-  <meta name="description" content="StoryLine is a personalized AI language coach that teaches through immersive story worlds.">
+  <title>StoryLine – Sprogtræning til virksomheder | Dansk på arbejdspladsen</title>
+  <meta name="description" content="Sprogtræning skrevet til jeres arbejdsplads: medarbejderne lærer dansk med ordforrådet, situationerne og de uskrevne regler fra deres eget job – pr. rolle og niveau, forklaret på deres modersmål.">
+  <meta name="keywords" content="sprogtræning virksomhed, dansk på arbejdspladsen, danskundervisning medarbejdere, erhvervsdansk, sprogkursus internationale medarbejdere, language training Denmark">
+  <link rel="canonical" href="https://sl-ios.github.io/SL/">
+  <meta property="og:title" content="StoryLine – Sprogtræning til jeres arbejdsplads">
+  <meta property="og:description" content="Medarbejderne lærer sproget med ordforrådet, situationerne og de uskrevne regler fra deres eget job.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sl-ios.github.io/SL/">
+  <meta property="og:image" content="https://sl-ios.github.io/SL/StoryLineIcon.png">
+  <meta property="og:locale" content="da_DK">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "StoryLine",
+    "url": "https://sl-ios.github.io/SL/",
+    "logo": "https://sl-ios.github.io/SL/StoryLineIcon.png",
+    "email": "fstoryline@icloud.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "København", "addressCountry": "DK" },
+    "areaServed": "DK",
+    "description": "Sprogtræning til virksomheder i Danmark – skrevet til den enkelte arbejdsplads, rolle og niveau.",
+    "knowsLanguage": ["da", "en", "de"]
+  }
+  </script>
   <style>
     :root {
       --navy: #0d1b3d;
@@ -122,7 +144,6 @@
 
     .hero {
       text-align: center;
-      min-height: 72vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -166,6 +187,8 @@
       gap: 12px;
       margin: 26px 0 18px;
     }
+
+    .cards-2x2 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 
     .card {
       background: var(--card);
@@ -534,6 +557,7 @@
         <span class="wordmark">Story<span class="line">Line</span></span>
       </a>
       <nav class="links" aria-label="Site">
+        <a href="#business">Kontakt</a>
         <a href="#privacy">Privacy</a>
         <a href="#terms">Terms</a>
         <a href="#support">Support</a>
@@ -545,9 +569,95 @@
 
   <main class="wrap">
     <section id="home" class="hero">
-      <img class="hero-mark" src="StoryLineIcon.png" alt="StoryLine app icon">
+      <img class="hero-mark" src="StoryLineIcon.png" alt="StoryLine">
       <h1 class="wordmark">Story<span class="line">Line</span></h1>
-      <p class="tagline">Your language. Your story.</p>
+      <p class="tagline">Sprogtræning til jeres arbejdsplads</p>
+      <p class="subtitle">Language training built around your workplace</p>
+    </section>
+
+    <section id="business">
+      <div class="lang-toggle" role="tablist" aria-label="Language">
+        <button type="button" class="active" data-lang-target="b2b-da">Dansk</button>
+        <button type="button" data-lang-target="b2b-en">English</button>
+      </div>
+
+      <div id="b2b-da" class="panel">
+        <h2>Sprog, der handler om jeres arbejde</h2>
+        <p>Nye kolleger lærer hurtigst, når sproget handler om deres egen hverdag. StoryLine giver jeres medarbejdere et sprogforløb, der er skrevet til jeres arbejdsplads: de ord, de situationer og de uskrevne regler, der gælder hos jer – pr. rolle og niveau.</p>
+
+        <div class="cards cards-2x2">
+          <div class="card">
+            <h3>Ordforråd fra jobbet</h3>
+            <p>De ord og vendinger, der faktisk bliver brugt i jeres hverdag – ikke lærebogens.</p>
+          </div>
+          <div class="card">
+            <h3>Situationer fra jeres arbejdsplads</h3>
+            <p>Korte afsnit om første dag, kolleger, kunder og sikkerhed – sådan som det foregår hos jer.</p>
+          </div>
+          <div class="card">
+            <h3>Det uskrevne</h3>
+            <p>Sikkerhedsregler, typiske begynderfejl og hvordan man gør tingene hos jer – vævet ind i forløbet.</p>
+          </div>
+          <div class="card">
+            <h3>Forklaret på modersmålet</h3>
+            <p>Hver medarbejder lærer med forklaringer på sit eget sprog – fra begynder- til mellemniveau.</p>
+          </div>
+        </div>
+
+        <h3>Sådan foregår det</h3>
+        <ol>
+          <li><strong>Vi taler sammen</strong> om jeres roller, sprog og de situationer, medarbejderne skal kunne klare.</li>
+          <li><strong>Vi udarbejder forløbet</strong> til jeres arbejdsplads – pr. rolle og niveau.</li>
+          <li><strong>Medarbejderne tilmelder sig</strong> med jeres firmakode og lærer i appen på deres iPhone.</li>
+        </ol>
+
+        <h3>Til hvem</h3>
+        <p>Virksomheder, institutioner og foreninger i Danmark med internationale medarbejdere eller nye kolleger, der skal på plads hurtigt – fra køkken og produktion til kontor og klubliv.</p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="mailto:fstoryline@icloud.com?subject=Sprogtr%C3%A6ning%20til%20vores%20arbejdsplads&amp;body=Virksomhed%3A%0AAntal%20medarbejdere%3A%0ASprog%20der%20skal%20l%C3%A6res%3A%0ARoller%20%2F%20situationer%3A%0A">Fortæl os om jeres arbejdsplads</a>
+        </div>
+        <p class="meta" style="text-align:center; margin-top:12px;">Eller skriv direkte til <a href="mailto:fstoryline@icloud.com">fstoryline@icloud.com</a> – vi svarer inden for få dage.</p>
+      </div>
+
+      <div id="b2b-en" class="panel hidden">
+        <h2>Language that is about your work</h2>
+        <p>New colleagues learn fastest when the language is about their own day at work. StoryLine gives your employees a language course written for your workplace: the words, the situations and the unwritten rules that apply at your place – per role and level.</p>
+
+        <div class="cards cards-2x2">
+          <div class="card">
+            <h3>Vocabulary from the job</h3>
+            <p>The words and phrases actually used in your day-to-day work – not the textbook’s.</p>
+          </div>
+          <div class="card">
+            <h3>Situations from your workplace</h3>
+            <p>Short episodes about the first day, colleagues, customers and safety – the way it works at your place.</p>
+          </div>
+          <div class="card">
+            <h3>The unwritten rules</h3>
+            <p>Safety rules, typical beginner mistakes and how things are done at your place – woven into the course.</p>
+          </div>
+          <div class="card">
+            <h3>Explained in their own language</h3>
+            <p>Every employee learns with explanations in their native language – from beginner to intermediate level.</p>
+          </div>
+        </div>
+
+        <h3>How it works</h3>
+        <ol>
+          <li><strong>We talk</strong> about your roles, languages and the situations your employees need to handle.</li>
+          <li><strong>We build the course</strong> for your workplace – per role and level.</li>
+          <li><strong>Employees join</strong> with your company code and learn in the app on their iPhone.</li>
+        </ol>
+
+        <h3>Who it is for</h3>
+        <p>Companies, institutions and clubs in Denmark with international employees or new colleagues who need to get up to speed quickly – from kitchen and production to office and club life.</p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="mailto:fstoryline@icloud.com?subject=Language%20training%20for%20our%20workplace&amp;body=Company%3A%0ANumber%20of%20employees%3A%0ALanguage%20to%20learn%3A%0ARoles%20%2F%20situations%3A%0A">Tell us about your workplace</a>
+        </div>
+        <p class="meta" style="text-align:center; margin-top:12px;">Or write directly to <a href="mailto:fstoryline@icloud.com">fstoryline@icloud.com</a> – we reply within a few days.</p>
+      </div>
     </section>
 
     <section id="privacy">
@@ -771,6 +881,15 @@
         });
       });
     });
+    (function () {
+      var param = new URLSearchParams(window.location.search).get('lang');
+      var nav = (navigator.language || '').toLowerCase();
+      var scandinavian = /^(da|nb|nn|no|sv)/.test(nav);
+      if (param === 'en' || param === 'de' || (!param && !scandinavian)) {
+        var en = document.querySelector('button[data-lang-target="b2b-en"]');
+        if (en) en.click();
+      }
+    })();
     // The app links here with ?lang=de|en; browsers fall back to their own language.
     (function () {
       var param = new URLSearchParams(window.location.search).get('lang');
